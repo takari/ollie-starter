@@ -23,6 +23,7 @@
     <build.helper.plugin.version>3.0.0</build.helper.plugin.version>
     <!-- Postgres -->
     <db.host>localhost</db.host>
+    <db.port>5432</db.port>
     <db.schema>public</db.schema>
     <db.driver>org.postgresql.Driver</db.driver>
     <db.url>jdbc:postgresql://${db.host}:${db.port}/postgres</db.url>
@@ -39,7 +40,7 @@
       <dependency>
         <groupId>com.walmartlabs.ollie</groupId>
         <artifactId>ollie-targetplatform</artifactId>
-        <version>0.0.31</version>
+        <version>${ollie.version}</version>
         <type>pom</type>
         <scope>import</scope>
       </dependency>
@@ -142,7 +143,7 @@
             </goals>
             <configuration>
               <portNames>
-                <portName>db.port</portName>
+                <portName>db.portxx</portName>
               </portNames>
             </configuration>
           </execution>
@@ -161,7 +162,7 @@
           </execution>
           <execution>
             <id>stop</id>
-            <phase>prepare-package</phase>
+            <phase>post-integration-test</phase>
             <goals>
               <goal>stop</goal>
             </goals>
@@ -206,6 +207,8 @@
           <username>${db.username}</username>
           <password>${db.password}</password>
           <promptOnNonLocalDatabase>false</promptOnNonLocalDatabase>
+          <databaseChangeLogTableName>databasechangelog</databaseChangeLogTableName>
+          <databaseChangeLogLockTableName>databasechangeloglock</databaseChangeLogLockTableName>
         </configuration>
       </plugin>
       <plugin>
@@ -243,6 +246,19 @@
             </generate>
           </generator>
         </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-failsafe-plugin</artifactId>
+        <version>3.0.0-M3</version>
+        <executions>
+          <execution>
+            <goals>
+              <goal>integration-test</goal>
+              <goal>verify</goal>
+            </goals>
+          </execution>
+        </executions>
       </plugin>
       <plugin>
         <groupId>com.google.cloud.tools</groupId>

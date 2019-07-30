@@ -30,7 +30,7 @@ import java.nio.file.Paths;
 
 import static org.junit.Assert.assertEquals;
 
-public class UserServerTest {
+public class UserServerIT {
 
     private UserServer server;
     private String basedir;
