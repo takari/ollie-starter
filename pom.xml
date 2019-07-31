@@ -164,6 +164,7 @@
               <goal>start</goal>
             </goals>
           </execution>
+          <!--
           <execution>
             <id>generate-sources-stop</id>
             <phase>generate-resources</phase>
@@ -178,6 +179,7 @@
               <goal>start</goal>
             </goals>
           </execution>
+          -->
           <execution>
             <id>integration-testing-stop</id>
             <phase>post-integration-test</phase>
