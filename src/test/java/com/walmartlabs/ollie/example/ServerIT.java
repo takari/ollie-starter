@@ -30,15 +30,15 @@ import java.nio.file.Paths;
 
 import static org.junit.Assert.assertEquals;
 
-public class UserServerIT {
+public class ServerIT {
 
-    private UserServer server;
+    private Server server;
     private String basedir;
 
     @Before
     public void beforeTest() {
         basedir = System.getProperty("basedir", new File("").getAbsolutePath());
-        server = new UserServer();
+        server = new Server();
         server.start();
     }
 

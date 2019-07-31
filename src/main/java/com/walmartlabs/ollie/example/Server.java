@@ -25,24 +25,24 @@ import com.walmartlabs.ollie.OllieServerBuilder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class UserServer {
+public class Server {
 
-    private final static Logger logger = LoggerFactory.getLogger(UserServer.class);
+    private final static Logger logger = LoggerFactory.getLogger(Server.class);
 
     private OllieServer server;
 
-    public UserServer() {
+    public Server() {
     }
 
     public static void main(String[] args) throws Exception {
-        new UserServer().start();
+        new Server().start();
     }
 
     public void start() {
         logger.info("Starting server");
         OllieServerBuilder builder = new OllieServerBuilder()
                 .port(9000)
-                .name("userServer") //name of .conf file in src/main/resources
+                .name("server") //name of .conf file in src/main/resources
                 .packageToScan("com.walmartlabs.ollie.example")
                 .databaseSupport("liquibase.xml", "databasechangelog", "databasechangeloglock").databaseSupport();
 

@@ -13,9 +13,9 @@
   <packaging>takari-jar</packaging>
 
   <properties>
-    <ollie.version>0.0.31</ollie.version>
+    <ollie.version>0.0.32-SNAPSHOT</ollie.version>
     <launcher.version>0.124</launcher.version>
-    <main-class>com.walmartlabs.ollie.example.UserServer</main-class>
+    <main-class>com.walmartlabs.ollie.example.Server</main-class>
     <!-- Database libraries and plugins -->
     <liquibase.version>3.5.1</liquibase.version>
     <jooq.version>3.11.11</jooq.version>
@@ -91,6 +91,10 @@
     <dependency>
       <groupId>org.jooq</groupId>
       <artifactId>jooq</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>com.fasterxml.jackson.core</groupId>
+      <artifactId>jackson-annotations</artifactId>
     </dependency>
     <dependency>
       <groupId>junit</groupId>
@@ -209,6 +213,7 @@
           <promptOnNonLocalDatabase>false</promptOnNonLocalDatabase>
           <databaseChangeLogTableName>databasechangelog</databaseChangeLogTableName>
           <databaseChangeLogLockTableName>databasechangeloglock</databaseChangeLogLockTableName>
+          <changelogSchemaName>public</changelogSchemaName>
         </configuration>
       </plugin>
       <plugin>
@@ -235,7 +240,7 @@
               <name>org.jooq.meta.postgres.PostgresDatabase</name>
               <inputSchema>public</inputSchema>
               <includes>.*</includes>
-              <excludes>DATABASECHANGELOG.*</excludes>
+              <excludes>databasechangelog.*</excludes>
             </database>
             <target>
               <packageName>com.walmartlabs.persistence.jooq</packageName>

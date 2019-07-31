@@ -41,14 +41,14 @@ import java.io.IOException;
 @Singleton
 @Path("/example/user")
 @Api(value = "/example/user", tags = "user")
-public class UserListener implements Resource {
+public class UserResource implements Resource {
 
-    private final static Logger logger = LoggerFactory.getLogger(UserListener.class);
+    private final static Logger logger = LoggerFactory.getLogger(UserResource.class);
 
     private final UserDao userDao;
 
     @Inject
-    public UserListener(UserDao userDao) {
+    public UserResource(UserDao userDao) {
         this.userDao = userDao;
     }
 
