@@ -21,13 +21,13 @@ package com.walmartlabs.ollie.example;
  */
 
 import com.walmartlabs.ollie.database.AbstractDaoTest;
+import com.walmartlabs.ollie.database.DatabaseModule;
 import org.jooq.SQLDialect;
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
 
-@Ignore
-public class PsqlUserDaoTest extends AbstractDaoTest {
+public class UserDaoTest extends AbstractDaoTest {
     private final String driver = "org.postgresql.Driver";
     private final String url = "jdbc:postgresql://localhost:5432/postgres";
     private final String username = "postgres";
@@ -38,6 +38,7 @@ public class PsqlUserDaoTest extends AbstractDaoTest {
 
     @Before
     public void setUp() throws Exception {
+        System.setProperty("ollie.db.autoMigrate", "false");
         userDao = new UserDao(getConfiguration(driver, url, username, password, dialect, maxPoolSize));
     }
 

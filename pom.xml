@@ -159,27 +159,11 @@
         <executions>
           <execution>
             <id>generate-sources-start</id>
-            <phase>generate-sources</phase>
+            <phase>process-resources</phase>
             <goals>
               <goal>start</goal>
             </goals>
           </execution>
-          <!--
-          <execution>
-            <id>generate-sources-stop</id>
-            <phase>generate-resources</phase>
-            <goals>
-              <goal>stop</goal>
-            </goals>
-          </execution>
-          <execution>
-            <id>integration-testing-start</id>
-            <phase>pre-integration-test</phase>
-            <goals>
-              <goal>start</goal>
-            </goals>
-          </execution>
-          -->
           <execution>
             <id>integration-testing-stop</id>
             <phase>post-integration-test</phase>
@@ -214,14 +198,14 @@
         <artifactId>liquibase-maven-plugin</artifactId>
         <executions>
           <execution>
-            <phase>generate-sources</phase>
+            <phase>process-resources</phase>
             <goals>
               <goal>update</goal>
             </goals>
           </execution>
         </executions>
         <configuration>
-          <changeLogFile>src/main/resources/${db.changeLogPath}</changeLogFile>
+          <changeLogFile>${db.changeLogPath}</changeLogFile>
           <driver>org.postgresql.Driver</driver>
           <url>jdbc:postgresql://${db.host}:${db.port}/postgres</url>
           <username>${db.username}</username>
@@ -237,7 +221,7 @@
         <artifactId>jooq-codegen-maven</artifactId>
         <executions>
           <execution>
-            <phase>generate-sources</phase>
+            <phase>process-resources</phase>
             <goals>
               <goal>generate</goal>
             </goals>
