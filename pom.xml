@@ -270,6 +270,9 @@
         <artifactId>jib-maven-plugin</artifactId>
         <version>${jib-maven-plugin.version}</version>
         <configuration>
+          <to>
+            <image>docker.io/jvanzyl/ollie-starter</image>
+          </to>
           <container>
             <ports>
               <port>9000</port>
