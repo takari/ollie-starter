@@ -23,7 +23,6 @@
     <build.helper.plugin.version>3.0.0</build.helper.plugin.version>
     <!-- Postgres -->
     <db.host>localhost</db.host>
-    <db.port>5432</db.port>
     <db.schema>public</db.schema>
     <db.driver>org.postgresql.Driver</db.driver>
     <db.url>jdbc:postgresql://${db.host}:${db.port}/postgres</db.url>
@@ -104,6 +103,12 @@
   </dependencies>
 
   <build>
+    <resources>
+      <resource>
+        <directory>src/main/resources</directory>
+        <filtering>true</filtering>
+      </resource>
+    </resources>
     <pluginManagement>
       <plugins>
         <plugin>
@@ -147,7 +152,7 @@
             </goals>
             <configuration>
               <portNames>
-                <portName>db.portxx</portName>
+                <portName>db.port</portName>
               </portNames>
             </configuration>
           </execution>
@@ -254,8 +259,23 @@
       </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <version>3.0.0-M4</version>
+        <configuration>
+          <systemPropertyVariables>
+            <db.port>${db.port}</db.port>
+          </systemPropertyVariables>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-failsafe-plugin</artifactId>
-        <version>3.0.0-M3</version>
+        <version>3.0.0-M4</version>
+        <configuration>
+          <systemPropertyVariables>
+            <db.port>${db.port}</db.port>
+          </systemPropertyVariables>
+        </configuration>
         <executions>
           <execution>
             <goals>

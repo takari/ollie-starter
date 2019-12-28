@@ -29,7 +29,7 @@ import org.junit.Test;
 
 public class UserDaoTest extends AbstractDaoTest {
     private final String driver = "org.postgresql.Driver";
-    private final String url = "jdbc:postgresql://localhost:5432/postgres";
+    private final String url = "jdbc:postgresql://localhost:%s/postgres";
     private final String username = "postgres";
     private final String password = "q1";
     private final SQLDialect dialect = SQLDialect.POSTGRES;
@@ -38,8 +38,10 @@ public class UserDaoTest extends AbstractDaoTest {
 
     @Before
     public void setUp() throws Exception {
+        String port = System.getProperty("db.port");
+        String urlWithDynamicPort = String.format(url, port);
         System.setProperty("ollie.db.autoMigrate", "false");
-        userDao = new UserDao(getConfiguration(driver, url, username, password, dialect, maxPoolSize));
+        userDao = new UserDao(getConfiguration(driver, urlWithDynamicPort, username, password, dialect, maxPoolSize));
     }
 
     @Test
